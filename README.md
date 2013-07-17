@@ -174,11 +174,11 @@ The `@RequestMapping` annotation ensures that HTTP requests to `/` are mapped to
 
 > **Note:** In this example, the application only handles `GET`.
 
-The implementation of the method body return the string `index`, signaling the name of the view that needs to be rendered.
+The implementation of the method body returns the string `index`, signaling the name of the view that needs to be rendered.
 
 ### Creating a web page template
 
-Our web controller up above wants to render `index` when someone does `GET /` on your web site. A simple, HTML5, Thymeleaf template, is located in `src/main/resources/templates/`.
+Yuur web controller up above wants to render `index` when someone does `GET /` on your web site. A simple HTML5 Thymeleaf template is located in `src/main/resources/templates/`.
 
 `src/main/resources/templates/index.html`
 ```html
@@ -189,7 +189,7 @@ Our web controller up above wants to render `index` when someone does `GET /` on
 </html>
 ```
     
-This template has some very basic HTML elements and no actual Thymeleaf-specific code. But if you wanted to, you can augment it as needed.
+This template has some very basic HTML elements and no actual Thymeleaf-specific code. But if you wanted to, you could augment it as needed.
 
 Make the application executable
 -------------------------------
@@ -222,7 +222,7 @@ public class Application {
 
 The `main()` method defers to the [`SpringApplication`][] helper class, providing `Application.class` as an argument to its `run()` method. This tells Spring to read the annotation metadata from `Application` and to manage it as a component in the [Spring application context][u-application-context].
 
-The `@ComponentScan` annotation tells Spring to search recursively through the `hello` package and its children for classes marked directly or indirectly with Spring's [`@Component`][] annotation. This directive ensures that Spring finds and registers the `GreetingController`, because it is marked with `@Controller`, which in turn is a kind of `@Component` annotation.
+The `@ComponentScan` annotation tells Spring to search recursively through the `hello` package and its children for classes marked directly or indirectly with Spring's [`@Component`][] annotation. This directive ensures that Spring finds and registers the `HelloController`, because it is marked with `@Controller`, which in turn is a kind of `@Component` annotation.
 
 The [`@EnableAutoConfiguration`][] annotation switches on reasonable default behaviors based on the content of your classpath. For example, because the application depends on the embeddable version of Tomcat (tomcat-embed-core.jar), a Tomcat server is set up and configured with reasonable defaults on your behalf. And because the application also depends on Spring MVC (spring-webmvc.jar), a Spring MVC [`DispatcherServlet`][] is configured and registered for you — no `web.xml` necessary! Auto-configuration is a powerful, flexible mechanism. See the [API documentation][`@EnableAutoConfiguration`] for further details.
 
@@ -268,11 +268,11 @@ Run your application with `java -jar` at the command line:
 
 
 
-Logging output is displayed. The service should be up and running within a few seconds.
+Logging output is displayed. The service should be up and running within a few seconds. With your browser, click on [http://localhost:8080](http://localhost:8080). You should see the "Hello, world!" text rendered by the template.
 
 Creating a WAR file
 -------------------
-This application is configured to generate a JAR artifact. To switch it to a WAR file, you must add the artifact type in your `pom.xml`:
+The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you must add the artifact type at the top of your `pom.xml`:
 
 ```xml
     <packaging>war</packaging>
@@ -403,7 +403,9 @@ public class HelloWebXml extends SpringServletInitializer {
 
 `getConfigClasses()` returns an array of classes that are needed to launch the application. This is where you supply a handle to your `Application` configuration. Remember: `Application` has the `@ComponentScan`, so it will find the web controller automatically.
 
-> **Note:** If you didn't use `@ComponentScan`, you would need to include the other components inside `getConfigClasses()`.
+Even though `public static void main()` is no longer needed, you can leave that code in place.
+
+> **Note:** If you didn't use `@ComponentScan`, you would either need to manually add all other components as `@Bean`s or include the other components inside `getConfigClasses()`.
 
 Running the WAR file
 --------------------
@@ -414,19 +416,22 @@ At this stage, you are ready to build a WAR file.
 
     mvn package
     
-That will create target/gs-jar-to-war-complete-0.1.0.war, a deployable artifact.
+That will create **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
     
 You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Zero currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
-If you are using [Spring Tool Suite](http://www.springsource.org/sts) to actually build your application, you can take advantage of it's built in support for tc Server v2.9. Just drag the entire application's root folder down to an instance. Click on the `Start` button, and it should fire up right away. Then right click on the app, and select `Open Home Page`. It should open a browser tab and display a 
+If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can take advantage of it's built in support for **tc Server v2.9**. 
+- Drag the entire application's root folder down to the server instance. 
+- Click on the `Start` button, and it should fire up right away. 
+- Then right click on the app, and select `Open Home Page`. It should open a browser tab and display the "Hello, world!" text.
 
-Either way, you can then navigate to http://localhost:8080/gs-jar-to-war-complete/ to see the results.
+Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-complete/](http://localhost:8080/gs-jar-to-war-complete/) to see the results.
 
 
 Summary
 -------
 
-Congratulations! You've just converted an executable JAR application into a WAR-file based one that can be run on any servlet 3.0+ container.
+Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run on any servlet 3.0+ container.
 
 
 
