@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-convert-jar-to-war-complete</artifactId>
+    <artifactId>gs-convert-jar-to-war</artifactId>
     <version>0.1.0</version>
     <packaging>war</packaging>
 
