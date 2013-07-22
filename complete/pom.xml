@@ -9,15 +9,19 @@
     <packaging>war</packaging>
 
     <parent>
-        <groupId>org.springframework.bootstrap</groupId>
-        <artifactId>spring-bootstrap-starters</artifactId>
+        <groupId>org.springframework.zero</groupId>
+        <artifactId>spring-starter-parent</artifactId>
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
+	<properties>
+		<start-class>hello.Application</start-class>
+	</properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.springframework.bootstrap</groupId>
-            <artifactId>spring-bootstrap-web-starter</artifactId>
+            <groupId>org.springframework.zero</groupId>
+            <artifactId>spring-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
@@ -25,17 +29,14 @@
         </dependency>
     </dependencies>
 
-    <build>
-    	<plugins>
-    		<plugin>
-    			<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-war-plugin</artifactId>
-    			<configuration>
-    				<failOnMissingWebXml>false</failOnMissingWebXml>
-    			</configuration>
-    		</plugin>
-    	</plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.zero</groupId>
+				<artifactId>spring-package-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
     <!-- TODO: remove once bootstrap goes GA -->
     <repositories>
