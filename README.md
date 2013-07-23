@@ -64,15 +64,19 @@ In a project directory of your choosing, create the following subdirectory struc
     <version>0.1.0</version>
 
     <parent>
-        <groupId>org.springframework.bootstrap</groupId>
-        <artifactId>spring-bootstrap-starters</artifactId>
+        <groupId>org.springframework.zero</groupId>
+        <artifactId>spring-starter-parent</artifactId>
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
+	<properties>
+		<start-class>hello.Application</start-class>
+	</properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.springframework.bootstrap</groupId>
-            <artifactId>spring-bootstrap-web-starter</artifactId>
+            <groupId>org.springframework.zero</groupId>
+            <artifactId>spring-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
@@ -80,19 +84,15 @@ In a project directory of your choosing, create the following subdirectory struc
         </dependency>
     </dependencies>
 
-    <properties>
-        <start-class>hello.Application</start-class>
-    </properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.zero</groupId>
+				<artifactId>spring-package-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-    
     <!-- TODO: remove once bootstrap goes GA -->
     <repositories>
         <repository>
@@ -202,8 +202,8 @@ In this guide, you'll first make the application an executable JAR file with the
 ```java
 package hello;
 
+import org.springframework.autoconfigure.EnableAutoConfiguration;
 import org.springframework.bootstrap.SpringApplication;
-import org.springframework.bootstrap.context.annotation.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -254,7 +254,9 @@ The [Spring Package maven plugin][spring-package-maven-plugin] collects all the 
 
 Now run the following to produce a single executable JAR file containing all necessary dependency classes and resources:
 
-    mvn package
+```sh
+$ mvn package
+```
 
 [spring-package-maven-plugin]: https://github.com/SpringSource/spring-zero/tree/master/spring-package-maven-plugin
 
@@ -264,8 +266,9 @@ Run the application
 -------------------
 Run your application with `java -jar` at the command line:
 
-    java -jar target/gs-convert-jar-to-war-0.1.0.jar
-
+```sh
+$ java -jar target/gs-convert-jar-to-war-0.1.0.jar
+```
 
 
 Logging output is displayed. The service should be up and running within a few seconds. With your browser, click on [http://localhost:8080](http://localhost:8080). You should see the "Hello, world!" text rendered by the template.
@@ -309,15 +312,19 @@ This signals maven to proceed even though there is no web.xml anywhere in the pr
     <packaging>war</packaging>
 
     <parent>
-        <groupId>org.springframework.bootstrap</groupId>
-        <artifactId>spring-bootstrap-starters</artifactId>
+        <groupId>org.springframework.zero</groupId>
+        <artifactId>spring-starter-parent</artifactId>
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
+	<properties>
+		<start-class>hello.Application</start-class>
+	</properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.springframework.bootstrap</groupId>
-            <artifactId>spring-bootstrap-web-starter</artifactId>
+            <groupId>org.springframework.zero</groupId>
+            <artifactId>spring-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
@@ -325,17 +332,14 @@ This signals maven to proceed even though there is no web.xml anywhere in the pr
         </dependency>
     </dependencies>
 
-    <build>
-    	<plugins>
-    		<plugin>
-    			<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-war-plugin</artifactId>
-    			<configuration>
-    				<failOnMissingWebXml>false</failOnMissingWebXml>
-    			</configuration>
-    		</plugin>
-    	</plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.zero</groupId>
+				<artifactId>spring-package-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
     <!-- TODO: remove once bootstrap goes GA -->
     <repositories>
