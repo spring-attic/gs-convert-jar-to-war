@@ -1,8 +1,8 @@
-## Related Resources
+## Related resources
 
-There's more to building RESTful web services than is covered here. You can continue your exploration of Spring and REST with the following resources.
+There's more to building RESTful web services than what is covered here. You can continue to explore Spring and REST with the following resources.
 
-### Getting Started Guides
+### Getting Started guides
 
 * [Consuming a RESTful Web Service][gs-consuming-rest]
 * [Building a Hypermedia-Driven REST Web Service][gs-rest-hateoas]
@@ -22,7 +22,7 @@ There's more to building RESTful web services than is covered here. You can cont
 
 [tut-tbd]: /guides/tutorials/tbd
 
-### Concepts and Technologies
+### Concepts and technologies
 
 * [REST][u-rest]
 * [JSON][u-json]
