@@ -1,6 +1,4 @@
 
-# Getting Started: Converting a Spring Zero JAR-based application into a WAR
-
 What you'll build
 -----------------
 This guide will walk you through the process of converting a runnable JAR application into a WAR file you can run on any standard servlet container.
