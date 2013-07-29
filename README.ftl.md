@@ -2,7 +2,7 @@
 
 What you'll build
 -----------------
-This guide will walk you through the process of converting a runnable JAR application into a WAR file you can run on any standard servlet container.
+This guide walks you through the process of converting a runnable JAR application into a WAR file that you can run in any standard servlet container.
 
 What you'll need
 ----------------
@@ -32,7 +32,7 @@ Set up the project
 <a name="initial"></a>
 Create a basic web application
 ------------------------------
-Now that you've set up the basic project, you can create a Spring MVC application. You'll get it to run using Spring Zero's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
+Now that you've set up the project, you can create a Spring MVC application. You'll get it to run using Spring Zero's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
 
 
 ### Create a web controller
@@ -51,20 +51,20 @@ The `@RequestMapping` annotation ensures that HTTP requests to `/` are mapped to
 
 The implementation of the method body returns the string `index`, signaling the name of the view that needs to be rendered.
 
-### Creating a web page template
+### Create a web page template
 
-Yuur web controller up above wants to render `index` when someone does `GET /` on your web site. A simple HTML5 Thymeleaf template is located in `src/main/resources/templates/`.
+The web controller in the preceding example will render `index` when someone does `GET /` on your web site. A simple HTML5 Thymeleaf template is located in `src/main/resources/templates/`.
 
     <@snippet path="src/main/resources/templates/index.html" prefix="initial"/>
     
-This template has some very basic HTML elements and no actual Thymeleaf-specific code. But if you wanted to, you could augment it as needed.
+This template has some very basic HTML elements and no actual Thymeleaf-specific code. You could augment it as needed.
 
 Make the application executable
 -------------------------------
 
-In this guide, you'll first make the application an executable JAR file with the following steps:
+In this guide, you'll first make the application an executable JAR file. You package everything in a single, executable JAR, driven by a `main()` method. Along the way, you use Spring's support for embedding the [Tomcat][u-tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance.
 
-### Create an Application class
+### Create an application class
 
     <@snippet path="src/main/java/hello/Application.java" prefix="initial"/>
 
@@ -82,9 +82,9 @@ The [`@EnableAutoConfiguration`][] annotation switches on reasonable default beh
 
 Logging output is displayed. The service should be up and running within a few seconds. With your browser, click on [http://localhost:8080](http://localhost:8080). You should see the "Hello, world!" text rendered by the template.
 
-Creating a WAR file
+Create a WAR file
 -------------------
-The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you must add the artifact type at the top of your `pom.xml`:
+The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you add the artifact type at the top of your `pom.xml`:
 
 ```xml
     <packaging>war</packaging>
@@ -106,11 +106,11 @@ To support the fact that you are using servlet 3.0's web.xml-free version, you m
     </build>
 ```
 
-This signals maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
+This signals Maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
 
     <@snippet path="pom.xml" prefix="complete"/>
 
-Initializing the servlet
+Initialize the servlet
 ------------------------
 Previously, the application contained a `public static void main()` method which the maven-shade-plugin was configured to run when using the `java -jar` command.
 
@@ -118,31 +118,31 @@ By converting this into a WAR file with no XML files, you need a different signa
 
     <@snippet path="src/main/java/hello/HelloWebXml.java" prefix="complete"/>
     
-`HelloWebXml` is a pure Java class that provides an alternative to creating a `web.xml`. It extends the `SpringServletInitializer`. This offers many configurable options by overriding methods. But one required method is `getConfigClasses()`.
+`HelloWebXml` is a pure Java class that provides an alternative to creating a `web.xml`. It extends the `SpringServletInitializer` class. This extension offers many configurable options by overriding methods. But one required method is `getConfigClasses()`.
 
 `getConfigClasses()` returns an array of classes that are needed to launch the application. This is where you supply a handle to your `Application` configuration. Remember: `Application` has the `@ComponentScan`, so it will find the web controller automatically.
 
 Even though `public static void main()` is no longer needed, you can leave that code in place.
 
-> **Note:** If you didn't use `@ComponentScan`, you would either need to manually add all other components as `@Bean`s or include the other components inside `getConfigClasses()`.
+> **Note:** If you didn't use `@ComponentScan`, you would either need to add all other components manually as `@Bean`s or include the other components inside `getConfigClasses()`.
 
-Running the WAR file
+Run the WAR file
 --------------------
 
-There is nothing else to do. Once `Application` gets loaded up, it will trigger Spring Zero to automatically configure the other beans, such as the Spring MVC ones, the Thymeleaf ones, and anything else you have added to your application.
+Once `Application` is loaded, it will trigger Spring Zero to automatically configure the other beans, such as Spring MVC beans, Thymeleaf beans, and anything else you have added to your application.
 
 At this stage, you are ready to build a WAR file.
 
     mvn package
     
-That will create **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
+This command creates **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
     
 You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Zero currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
-If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can take advantage of it's built in support for **tc Server v2.9**. 
+If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can use its built-in support for **tc Server v2.9**. 
 - Drag the entire application's root folder down to the server instance. 
-- Click on the `Start` button, and it should fire up right away. 
-- Then right click on the app, and select `Open Home Page`. It should open a browser tab and display the "Hello, world!" text.
+- Click the `Start` button to start the app. 
+- Right-click on the app, and select `Open Home Page`. A browser tab displays the "Hello, world!" text.
 
 Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-complete/](http://localhost:8080/gs-jar-to-war-complete/) to see the results.
 
@@ -150,7 +150,7 @@ Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-comple
 Summary
 -------
 
-Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run on any servlet 3.0+ container.
+Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run in any servlet 3.0+ container.
 
 
 
