@@ -1,7 +1,7 @@
 
 What you'll build
 -----------------
-This guide will walk you through the process of converting a runnable JAR application into a WAR file you can run on any standard servlet container.
+This guide walks you through the process of converting a runnable JAR application that was built with [Spring Zero](https://github.com/SpringSource/spring-boot) into a WAR file that you can run in any standard servlet container.
 
 What you'll need
 ----------------
@@ -139,7 +139,7 @@ Note to experienced Maven users who are unaccustomed to using an external parent
 <a name="initial"></a>
 Create a basic web application
 ------------------------------
-Now that you've set up the basic project, you can create a Spring MVC application. You'll get it to run using Spring Zero's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
+Now that you've set up the project, you can create a Spring MVC application. You'll get it to run using Spring Zero's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
 
 
 ### Create a web controller
@@ -166,7 +166,7 @@ public class HelloController {
 
 This controller is concise and simple, but there's plenty going on under the hood. Let's break it down step by step.
 
-The `@Controller` annotation signals that application that this class contains methods to map onto web links.
+The `@Controller` annotation signals that this class contains web application paths.
 
 The `@RequestMapping` annotation ensures that HTTP requests to `/` are mapped to the `index()` method.
 
@@ -174,9 +174,9 @@ The `@RequestMapping` annotation ensures that HTTP requests to `/` are mapped to
 
 The implementation of the method body returns the string `index`, signaling the name of the view that needs to be rendered.
 
-### Creating a web page template
+### Create a web page template
 
-Yuur web controller up above wants to render `index` when someone does `GET /` on your web site. A simple HTML5 Thymeleaf template is located in `src/main/resources/templates/`.
+The web controller returns the string `index` when someone does `GET /` on your web site. Spring Zero has automatically added Thymeleaf beans to the application context to convert this into a request for the Thymeleaf template located at `src/main/resources/templates/index.html`.
 
 `src/main/resources/templates/index.html`
 ```html
@@ -187,14 +187,14 @@ Yuur web controller up above wants to render `index` when someone does `GET /` o
 </html>
 ```
     
-This template has some very basic HTML elements and no actual Thymeleaf-specific code. But if you wanted to, you could augment it as needed.
+This template has some very basic HTML elements and no actual Thymeleaf-specific code. You could [augment it as needed][gs-thymeleaf].
 
 Make the application executable
 -------------------------------
 
-In this guide, you'll first make the application an executable JAR file with the following steps:
+In this guide, you'll first make the application an executable JAR file. You package everything in a single, executable JAR, driven by a `main()` method. Along the way, you use Spring's support for embedding the [Tomcat][u-tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance. Later on, you'll see how to build a [WAR][u-war] file and run it on a standard container.
 
-### Create an Application class
+### Create an application class
 
 `src/main/java/hello/Application.java`
 ```java
@@ -228,26 +228,6 @@ The [`@EnableAutoConfiguration`][] annotation switches on reasonable default beh
 
 Now that your `Application` class is ready, you simply instruct the build system to create a single, executable jar containing everything. This makes it easy to ship, version, and deploy the service as an application throughout the development lifecycle, across different environments, and so forth.
 
-Add the following configuration to your existing Maven POM:
-
-`pom.xml`
-```xml
-    <properties>
-        <start-class>hello.Application</start-class>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.zero</groupId>
-                <artifactId>spring-package-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-```
-
-The `start-class` property tells Maven to create a `META-INF/MANIFEST.MF` file with a `Main-Class: hello.Application` entry. This entry enables you to run the jar with `java -jar`.
-
 The [Spring Package maven plugin][spring-package-maven-plugin] collects all the jars on the classpath and builds a single "über-jar", which makes it more convenient to execute and transport your service.
 
 Now run the following to produce a single executable JAR file containing all necessary dependency classes and resources:
@@ -257,8 +237,6 @@ $ mvn package
 ```
 
 [spring-package-maven-plugin]: https://github.com/SpringSource/spring-zero/tree/master/spring-package-maven-plugin
-
-> **Note:** The procedure above will create a runnable JAR. You can also opt to [build a classic WAR file](/guides/gs/convert-jar-to-war/content) instead.
 
 Run the application
 -------------------
@@ -271,9 +249,9 @@ $ java -jar target/gs-convert-jar-to-war-0.1.0.jar
 
 Logging output is displayed. The service should be up and running within a few seconds. With your browser, click on [http://localhost:8080](http://localhost:8080). You should see the "Hello, world!" text rendered by the template.
 
-Creating a WAR file
+Create a WAR file
 -------------------
-The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you must add the artifact type at the top of your `pom.xml`:
+The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you add the artifact type at the top of your `pom.xml`:
 
 ```xml
     <packaging>war</packaging>
@@ -295,7 +273,7 @@ To support the fact that you are using servlet 3.0's web.xml-free version, you m
     </build>
 ```
 
-This signals maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
+This signals Maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
 
 `pom.xml`
 ```xml
@@ -379,7 +357,7 @@ This signals maven to proceed even though there is no web.xml anywhere in the pr
 </project>
 ```
 
-Initializing the servlet
+Initialize the servlet
 ------------------------
 Previously, the application contained a `public static void main()` method which the maven-shade-plugin was configured to run when using the `java -jar` command.
 
@@ -401,42 +379,45 @@ public class HelloWebXml extends SpringServletInitializer {
 }
 ```
     
-`HelloWebXml` is a pure Java class that provides an alternative to creating a `web.xml`. It extends the `SpringServletInitializer`. This offers many configurable options by overriding methods. But one required method is `getConfigClasses()`.
+`HelloWebXml` is a pure Java class that provides an alternative to creating a `web.xml`. It extends the `SpringServletInitializer` class. This extension offers many configurable options by overriding methods. But one required method is `getConfigClasses()`.
 
 `getConfigClasses()` returns an array of classes that are needed to launch the application. This is where you supply a handle to your `Application` configuration. Remember: `Application` has the `@ComponentScan`, so it will find the web controller automatically.
 
 Even though `public static void main()` is no longer needed, you can leave that code in place.
 
-> **Note:** If you didn't use `@ComponentScan`, you would either need to manually add all other components as `@Bean`s or include the other components inside `getConfigClasses()`.
+> **Note:** If you didn't use `@ComponentScan`, you would either need to add all other components manually as `@Bean`s or include the other components inside `getConfigClasses()`.
 
-Running the WAR file
+Run the WAR file
 --------------------
 
-There is nothing else to do. Once `Application` gets loaded up, it will trigger Spring Zero to automatically configure the other beans, such as the Spring MVC ones, the Thymeleaf ones, and anything else you have added to your application.
+Once `Application` is loaded, it will trigger Spring Zero to automatically configure other beans. In this example, it adds the the Spring MVC beans and Thymeleaf beans. But Spring Zero adds other beans driven by a combination factors such as what's on your classpath as well as other settings in the application context.
 
 At this stage, you are ready to build a WAR file.
 
-    mvn package
+```sh
+	$ mvn package
+```
     
-That will create **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
+This command creates **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
     
 You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Zero currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
-If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can take advantage of it's built in support for **tc Server v2.9**. 
+If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can use its built-in support for **tc Server v2.9**. 
 - Drag the entire application's root folder down to the server instance. 
-- Click on the `Start` button, and it should fire up right away. 
-- Then right click on the app, and select `Open Home Page`. It should open a browser tab and display the "Hello, world!" text.
+- Click the `Start` button to start the app.
+- You should see tc Server logging appear in one of the console windows.
+- Right-click on the app, and select `Open Home Page`. A browser tab inside STS should open up and display the "Hello, world!" text.
 
-Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-complete/](http://localhost:8080/gs-jar-to-war-complete/) to see the results.
+Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-complete/](http://localhost:8080/gs-jar-to-war-complete/) with your browser and see the "Hello, world!" text.
 
 
 Summary
 -------
 
-Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run on any servlet 3.0+ container.
+Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run in any servlet 3.0+ container.
 
 
-
+[gs-thymeleaf]: /gs/thymeleaf/content
 [u-war]: /understanding/war
 [u-tomcat]: /understanding/tomcat
 [u-application-context]: /understanding/application-context
