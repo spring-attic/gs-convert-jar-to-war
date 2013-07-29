@@ -257,22 +257,6 @@ The application you built up to this point is configured to generate a JAR artif
     <packaging>war</packaging>
 ```
 
-To support the fact that you are using servlet 3.0's web.xml-free version, you must add some extra settings through the `maven-war-plugin`:
-
-```xml
-    <build>
-    	<plugins>
-    		<plugin>
-    			<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-war-plugin</artifactId>
-    			<configuration>
-    				<failOnMissingWebXml>false</failOnMissingWebXml>
-    			</configuration>
-    		</plugin>
-    	</plugins>
-    </build>
-```
-
 This signals Maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
 
 `pom.xml`
@@ -293,10 +277,6 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
-	<properties>
-		<start-class>hello.Application</start-class>
-	</properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.zero</groupId>
@@ -307,6 +287,10 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
             <artifactId>thymeleaf-spring3</artifactId>
         </dependency>
     </dependencies>
+
+	<properties>
+		<start-class>hello.Application</start-class>
+	</properties>
 
 	<build>
 		<plugins>
@@ -398,7 +382,7 @@ At this stage, you are ready to build a WAR file.
 	$ mvn package
 ```
     
-This command creates **target/gs-jar-to-war-complete-0.1.0.war**, a deployable artifact.
+This command creates **target/gs-convert-jar-to-war-0.1.0.war**, a deployable artifact.
     
 You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Zero currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
@@ -408,7 +392,11 @@ If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop
 - You should see tc Server logging appear in one of the console windows.
 - Right-click on the app, and select `Open Home Page`. A browser tab inside STS should open up and display the "Hello, world!" text.
 
-Either way, you can then navigate to [http://localhost:8080/gs-jar-to-war-complete/](http://localhost:8080/gs-jar-to-war-complete/) with your browser and see the "Hello, world!" text.
+That means you can then either navigate to:
+- [http://localhost:8080/gs-convert-jar-to-war/](http://localhost:8080/gs-convert-jar-to-war/) from STS
+- [http://localhost:8080/gs-convert-jar-to-war-0.1.0/](http://localhost:8080/gs-convert-jar-to-war-0.1.0/) if you deployed to a separate instance of Tomcat
+
+From there you will see the "Hello, world!" text.
 
 
 Summary
