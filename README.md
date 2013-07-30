@@ -62,8 +62,8 @@ In a project directory of your choosing, create the following subdirectory struc
     <version>0.1.0</version>
 
     <parent>
-        <groupId>org.springframework.zero</groupId>
-        <artifactId>spring-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-up-parent</artifactId>
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
@@ -73,8 +73,8 @@ In a project directory of your choosing, create the following subdirectory struc
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.zero</groupId>
-            <artifactId>spring-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-up-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
@@ -85,8 +85,8 @@ In a project directory of your choosing, create the following subdirectory struc
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.zero</groupId>
-				<artifactId>spring-package-maven-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
@@ -131,7 +131,7 @@ In a project directory of your choosing, create the following subdirectory struc
 </project>
 ```
 
-TODO: mention that we're using Spring Bootstrap's [_starter POMs_](../gs-bootstrap-starter) here.
+TODO: mention that we're using Spring Boot's [_starter POMs_](../gs-bootstrap-starter) here.
 
 Note to experienced Maven users who are unaccustomed to using an external parent project: you can take it out later, it's just there to reduce the amount of code you have to write to get started.
 
@@ -272,15 +272,15 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
     <packaging>war</packaging>
 
     <parent>
-        <groupId>org.springframework.zero</groupId>
-        <artifactId>spring-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-up-parent</artifactId>
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.zero</groupId>
-            <artifactId>spring-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-up-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
@@ -295,8 +295,8 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.zero</groupId>
-				<artifactId>spring-package-maven-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
