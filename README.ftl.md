@@ -2,7 +2,7 @@
 
 What you'll build
 -----------------
-This guide walks you through the process of converting a runnable JAR application that was built with [Spring Zero](https://github.com/SpringSource/spring-boot) into a WAR file that you can run in any standard servlet container.
+This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a WAR file that you can run in any standard servlet container.
 
 What you'll need
 ----------------
@@ -32,7 +32,7 @@ Set up the project
 <a name="initial"></a>
 Create a basic web application
 ------------------------------
-Now that you've set up the project, you can create a Spring MVC application. You'll get it to run using Spring Zero's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
+Now that you've set up the project, you can create a Spring MVC application. You'll get it to run using Spring Boot's embedded servlet container. Then, you'll modify things slightly to build a WAR file that can run in any servlet 3.0 container.
 
 
 ### Create a web controller
@@ -53,7 +53,7 @@ The implementation of the method body returns the string `index`, signaling the 
 
 ### Create a web page template
 
-The web controller returns the string `index` when someone does `GET /` on your web site. Spring Zero has automatically added Thymeleaf beans to the application context to convert this into a request for the Thymeleaf template located at `src/main/resources/templates/index.html`.
+The web controller returns the string `index` when someone does `GET /` on your web site. Spring Boot has automatically added Thymeleaf beans to the application context to convert this into a request for the Thymeleaf template located at `src/main/resources/templates/index.html`.
 
     <@snippet path="src/main/resources/templates/index.html" prefix="initial"/>
     
@@ -123,7 +123,7 @@ Even though `public static void main()` is no longer needed, you can leave that 
 Run the WAR file
 --------------------
 
-Once `Application` is loaded, it will trigger Spring Zero to automatically configure other beans. In this example, it adds the the Spring MVC beans and Thymeleaf beans. But Spring Zero adds other beans driven by a combination factors such as what's on your classpath as well as other settings in the application context.
+Once `Application` is loaded, it will trigger Spring Boot to automatically configure other beans. In this example, it adds the the Spring MVC beans and Thymeleaf beans. But Spring Boot adds other beans driven by a combination factors such as what's on your classpath as well as other settings in the application context.
 
 At this stage, you are ready to build a WAR file.
 
@@ -133,7 +133,7 @@ At this stage, you are ready to build a WAR file.
     
 This command creates **target/${project_id}-0.1.0.war**, a deployable artifact.
     
-You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Zero currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
+You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
 If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can use its built-in support for **tc Server v2.9**. 
 - Drag the entire application's root folder down to the server instance. 
