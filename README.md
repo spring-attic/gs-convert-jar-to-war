@@ -200,8 +200,8 @@ In this guide, you'll first make the application an executable JAR file. You pac
 ```java
 package hello;
 
-import org.springframework.autoconfigure.EnableAutoConfiguration;
-import org.springframework.bootstrap.SpringApplication;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -351,7 +351,7 @@ By converting this into a WAR file with no XML files, you need a different signa
 ```java
 package hello;
 
-import org.springframework.bootstrap.web.SpringServletInitializer;
+import org.springframework.boot.web.SpringServletInitializer;
 
 public class HelloWebXml extends SpringServletInitializer {
 	

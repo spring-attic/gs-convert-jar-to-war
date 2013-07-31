@@ -1,6 +1,6 @@
 package hello;
 
-import org.springframework.bootstrap.web.SpringServletInitializer;
+import org.springframework.boot.web.SpringServletInitializer;
 
 public class HelloWebXml extends SpringServletInitializer {
 	
