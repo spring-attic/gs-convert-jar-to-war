@@ -91,7 +91,6 @@ In a project directory of your choosing, create the following subdirectory struc
 		</plugins>
 	</build>
 
-    <!-- TODO: remove once bootstrap goes GA -->
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -301,7 +300,6 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
 		</plugins>
 	</build>
 
-    <!-- TODO: remove once bootstrap goes GA -->
     <repositories>
         <repository>
             <id>spring-milestones</id>
