@@ -1,8 +1,9 @@
 <#assign project_id="gs-convert-jar-to-war">
+This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a [WAR][u-war] file that you can run in any standard servlet container.
 
 What you'll build
 -----------------
-This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a WAR file that you can run in any standard servlet container.
+You'll take a simple Spring MVC web app and build a WAR file using Spring Boot.
 
 What you'll need
 ----------------

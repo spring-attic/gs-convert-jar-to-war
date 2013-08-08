@@ -1,7 +1,8 @@
+This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a [WAR][u-war] file that you can run in any standard servlet container.
 
 What you'll build
 -----------------
-This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a WAR file that you can run in any standard servlet container.
+You'll take a simple Spring MVC web app and build a WAR file using Spring Boot.
 
 What you'll need
 ----------------
@@ -37,7 +38,7 @@ To **skip the basics**, do the following:
 Set up the project
 ------------------
 
-First you set up a basic build script. You can use any build system you like when building apps with Spring, but the code you need to work with [Maven](https://maven.apache.org) and [Gradle](http://gradle.org) is included here. If you're not familiar with either, refer to [Building Java Projects with Maven](/guides/gs/maven/) or [Building Java Projects with Gradle](/guides/gs/gradle/).
+First you set up a basic build script. You can use any build system you like when building apps with Spring, but the code you need to work with [Maven](https://maven.apache.org) and [Gradle](http://gradle.org) is included here. If you're not familiar with either, refer to [Building Java Projects with Maven](/guides/gs/maven) or [Building Java Projects with Gradle](/guides/gs/gradle/).
 
 ### Create the directory structure
 
@@ -403,7 +404,7 @@ Summary
 Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run in any servlet 3.0+ container.
 
 
-[gs-thymeleaf]: /gs/thymeleaf/
+[gs-thymeleaf]: /gs/thymeleaf/content
 [u-war]: /understanding/war
 [u-tomcat]: /understanding/tomcat
 [u-application-context]: /understanding/application-context
