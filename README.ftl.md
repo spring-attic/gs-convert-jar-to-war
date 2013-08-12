@@ -1,4 +1,5 @@
 <#assign project_id="gs-convert-jar-to-war">
+
 This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a [WAR][u-war] file that you can run in any standard servlet container.
 
 What you'll build
@@ -58,7 +59,7 @@ The web controller returns the string `index` when someone does `GET /` on your 
 
     <@snippet path="src/main/resources/templates/index.html" prefix="initial"/>
     
-This template has some very basic HTML elements and no actual Thymeleaf-specific code. You could [augment it as needed][gs-thymeleaf].
+This template has some very basic HTML elements and no actual Thymeleaf-specific code. You could [augment it as needed](http://www.thymeleaf.org/).
 
 Make the application executable
 -------------------------------
@@ -79,15 +80,35 @@ The [`@EnableAutoConfiguration`][] annotation switches on reasonable default beh
 
 Now that your `Application` class is ready, you simply instruct the build system to create a single, executable jar containing everything. This makes it easy to ship, version, and deploy the service as an application throughout the development lifecycle, across different environments, and so forth.
 
-The [Spring Package maven plugin][spring-package-maven-plugin] collects all the jars on the classpath and builds a single "über-jar", which makes it more convenient to execute and transport your service.
+Add the following configuration to your existing Maven POM:
 
-Now run the following to produce a single executable JAR file containing all necessary dependency classes and resources:
+`pom.xml`
+```xml
+    <properties>
+        <start-class>hello.Application</start-class>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+The `start-class` property tells Maven to create a `META-INF/MANIFEST.MF` file with a `Main-Class: hello.Application` entry. This entry enables you to run it with `mvn spring-boot:run` (or simply run the jar itself with `java -jar`).
+
+The [Spring Boot maven plugin][spring-boot-maven-plugin] collects all the jars on the classpath and builds a single "über-jar", which makes it more convenient to execute and transport your service.
+
+Now run the following command to produce a single executable JAR file containing all necessary dependency classes and resources:
 
 ```sh
 $ mvn package
 ```
 
-[spring-package-maven-plugin]: https://github.com/SpringSource/spring-zero/tree/master/spring-package-maven-plugin
+[spring-boot-maven-plugin]: https://github.com/SpringSource/spring-boot/tree/master/spring-boot-tools/spring-boot-maven-plugin
 
 <@run_the_application/>
 
@@ -107,7 +128,7 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
 
 Initialize the servlet
 ------------------------
-Previously, the application contained a `public static void main()` method which the maven-shade-plugin was configured to run when using the `java -jar` command.
+Previously, the application contained a `public static void main()` method which the **spring-boot-maven-plugin** was configured to run when using the `java -jar` command.
 
 By converting this into a WAR file with no XML files, you need a different signal to the servlet container on how to launch the application.
 
@@ -134,7 +155,7 @@ At this stage, you are ready to build a WAR file.
     
 This command creates **target/${project_id}-0.1.0.war**, a deployable artifact.
     
-You can download [Tomcat 7.0.39](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
+You can download [Tomcat 7.0.42](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.42/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
 If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can use its built-in support for **tc Server v2.9**. 
 - Drag the entire application's root folder down to the server instance. 
@@ -155,7 +176,6 @@ Summary
 Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run in any servlet 3.0+ container.
 
 
-[gs-thymeleaf]: /gs/thymeleaf/content
 [u-war]: /understanding/WAR
 [u-tomcat]: /understanding/Tomcat
 [u-application-context]: /understanding/application-context
