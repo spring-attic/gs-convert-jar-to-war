@@ -68,9 +68,9 @@ In a project directory of your choosing, create the following subdirectory struc
         <version>0.5.0.BUILD-SNAPSHOT</version>
     </parent>
 
-	<properties>
-		<start-class>hello.Application</start-class>
-	</properties>
+    <properties>
+        <start-class>hello.Application</start-class>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -83,18 +83,18 @@ In a project directory of your choosing, create the following subdirectory struc
         </dependency>
     </dependencies>
 
-	<build>
-		<plugins>
+    <build>
+        <plugins>
             <plugin> 
                 <artifactId>maven-compiler-plugin</artifactId> 
                 <version>2.3.2</version> 
             </plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
@@ -161,10 +161,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HelloController {
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String index() {
-		return "index";
-	}
+    @RequestMapping(value="/", method=RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
 }
 ```
 
@@ -216,9 +216,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
 ```
 
@@ -292,22 +292,22 @@ This signals Maven to proceed even though there is no web.xml anywhere in the pr
         </dependency>
     </dependencies>
 
-	<properties>
-		<start-class>hello.Application</start-class>
-	</properties>
+    <properties>
+        <start-class>hello.Application</start-class>
+    </properties>
 
-	<build>
-		<plugins>
+    <build>
+        <plugins>
             <plugin> 
                 <artifactId>maven-compiler-plugin</artifactId> 
                 <version>2.3.2</version> 
             </plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
@@ -361,11 +361,11 @@ package hello;
 import org.springframework.boot.web.SpringServletInitializer;
 
 public class HelloWebXml extends SpringServletInitializer {
-	
-	@Override
-	protected Class<?>[] getConfigClasses() {
-		return new Class<?>[]{ Application.class };
-	}
+    
+    @Override
+    protected Class<?>[] getConfigClasses() {
+        return new Class<?>[]{ Application.class };
+    }
 
 }
 ```
