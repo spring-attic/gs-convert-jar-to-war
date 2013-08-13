@@ -433,9 +433,9 @@ Summary
 Congratulations! You've just converted an executable JAR application into a WAR-file based application that can be run in any servlet 3.0+ container.
 
 
-[u-war] /understanding/WAR
-[u-tomcat] /understanding/Tomcat
-[u-application-context] /understanding/application-context
+[u-war]: /understanding/WAR
+[u-tomcat]: /understanding/Tomcat
+[u-application-context]: /understanding/application-context
 [`@Controller`]: http://static.springsource.org/spring/docs/current/javadoc-api/org/springframework/stereotype/Controller.html
 [`SpringApplication`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/SpringApplication.html
 [`@EnableAutoConfiguration`]: http://static.springsource.org/spring-bootstrap/docs/0.5.0.BUILD-SNAPSHOT/javadoc-api/org/springframework/bootstrap/context/annotation/SpringApplication.html
