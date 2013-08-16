@@ -24,9 +24,9 @@ Set up the project
 
 <@create_directory_structure_hello/>
 
-### Create a Maven POM
+### Create a Gradle build file
 
-    <@snippet path="pom.xml" prefix="initial"/>
+    <@snippet path="build.gradle" prefix="initial"/>
 
 <@bootstrap_starter_pom_disclaimer/>
 
@@ -80,55 +80,40 @@ The [`@EnableAutoConfiguration`][] annotation switches on reasonable default beh
 
 Now that your `Application` class is ready, you simply instruct the build system to create a single, executable jar containing everything. This makes it easy to ship, version, and deploy the service as an application throughout the development lifecycle, across different environments, and so forth.
 
-Add the following configuration to your existing Maven POM:
-
-`pom.xml`
-```xml
-    <properties>
-        <start-class>hello.Application</start-class>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-```
-
-The `start-class` property tells Maven to create a `META-INF/MANIFEST.MF` file with a `Main-Class: hello.Application` entry. This entry enables you to run it with `mvn spring-boot:run` (or simply run the jar itself with `java -jar`).
-
-The [Spring Boot maven plugin][spring-boot-maven-plugin] collects all the jars on the classpath and builds a single "über-jar", which makes it more convenient to execute and transport your service.
-
-Now run the following command to produce a single executable JAR file containing all necessary dependency classes and resources:
-
 ```sh
-$ mvn package
+$ ./gradlew clean build
 ```
 
-[spring-boot-maven-plugin]: https://github.com/SpringSource/spring-boot/tree/master/spring-boot-tools/spring-boot-maven-plugin
-
-<@run_the_application/>
+<@run_the_application_with_gradle/>
 
 Logging output is displayed. The service should be up and running within a few seconds. With your browser, click on [http://localhost:8080](http://localhost:8080). You should see the "Hello, world!" text rendered by the template.
 
 Create a WAR file
 -------------------
-The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you add the artifact type at the top of your `pom.xml`:
+The application you built up to this point is configured to generate a JAR artifact. To switch it to a WAR file, you need add another plugin to your `build.gradle`:
 
-```xml
-    <packaging>war</packaging>
+```groovy
+apply plugin: 'war'
 ```
 
-This signals Maven to proceed even though there is no web.xml anywhere in the project. You no longer need the `maven-shade-plugin` nor the `<properties></properties>` settings you had earlier. Here is the new version of the pom.xml:
+You also need to change the `jar` settings to `war` settings:
 
-    <@snippet path="pom.xml" prefix="complete"/>
+```groovy
+war {
+    baseName = 'gs-convert-jar-to-war'
+    version =  '0.1.0'
+}
+```
+
+This signals Gradle to build a WAR. Here is the new version of the build.gradle:
+
+    <@snippet path="build.gradle" prefix="complete"/>
+    
+Now when you run `./gradlew clean build` to create a WAR file, as you'll see below.
 
 Initialize the servlet
 ------------------------
-Previously, the application contained a `public static void main()` method which the **spring-boot-maven-plugin** was configured to run when using the `java -jar` command.
+Previously, the application contained a `public static void main()` method which the **spring-boot-gradle-plugin** was configured to run when using the `java -jar` command.
 
 By converting this into a WAR file with no XML files, you need a different signal to the servlet container on how to launch the application.
 
@@ -150,10 +135,10 @@ Once `Application` is loaded, it will trigger Spring Boot to automatically confi
 At this stage, you are ready to build a WAR file.
 
 ```sh
-	$ mvn package
+$ ./gradlew clean build
 ```
     
-This command creates **target/${project_id}-0.1.0.war**, a deployable artifact.
+This command creates **build/libs/${project_id}-0.1.0.jar**, a deployable artifact.
     
 You can download [Tomcat 7.0.42](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.42/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
