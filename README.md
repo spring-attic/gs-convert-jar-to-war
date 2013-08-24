@@ -28,12 +28,12 @@ To **start from scratch**, move on to [Set up the project](#scratch).
 To **skip the basics**, do the following:
 
  - [Download][zip] and unzip the source repository for this guide, or clone it using [Git][u-git]:
-`git clone https://github.com/springframework-meta/gs-convert-jar-to-war.git`
+`git clone https://github.com/spring-guides/gs-convert-jar-to-war.git`
  - cd into `gs-convert-jar-to-war/initial`.
  - Jump ahead to [Create a basic web application](#initial).
 
 **When you're finished**, you can check your results against the code in `gs-convert-jar-to-war/complete`.
-[zip]: https://github.com/springframework-meta/gs-convert-jar-to-war/archive/master.zip
+[zip]: https://github.com/spring-guides/gs-convert-jar-to-war/archive/master.zip
 [u-git]: /understanding/Git
 
 
