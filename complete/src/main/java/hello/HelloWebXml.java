@@ -1,8 +1,8 @@
 package hello;
 
-import org.springframework.boot.web.SpringServletInitializer;
+import org.springframework.boot.web.SpringBootServletInitializer;
 
-public class HelloWebXml extends SpringServletInitializer {
+public class HelloWebXml extends SpringBootServletInitializer {
     
     @Override
     protected Class<?>[] getConfigClasses() {

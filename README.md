@@ -272,9 +272,9 @@ By converting this into a WAR file with no XML files, you need a different signa
 ```java
 package hello;
 
-import org.springframework.boot.web.SpringServletInitializer;
+import org.springframework.boot.web.SpringBootServletInitializer;
 
-public class HelloWebXml extends SpringServletInitializer {
+public class HelloWebXml extends SpringBootServletInitializer {
     
     @Override
     protected Class<?>[] getConfigClasses() {
