@@ -12,10 +12,12 @@ What you'll need
  - A favorite text editor or IDE
  - [JDK 6][jdk] or later
  - [Gradle 1.7+][gradle] or [Maven 3.0+][mvn]
+ - You can also import the code from this guide as well as view the web page directly into [Spring Tool Suite (STS)][gs-sts] and work your way through it from there.
 
 [jdk]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [gradle]: http://www.gradle.org/
 [mvn]: http://maven.apache.org/download.cgi
+[gs-sts]: /guides/gs/sts
 
 
 How to complete this guide
@@ -163,7 +165,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableAutoConfiguration
