@@ -94,7 +94,7 @@ task wrapper(type: Wrapper) {
 }
 ```
 
-This guide is using [Spring Boot's starter POMs](/guides/gs/spring-boot/).
+> **Note:** This guide is using [Spring Boot](/guides/gs/spring-boot/).
 
 
 <a name="initial"></a>
