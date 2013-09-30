@@ -60,7 +60,7 @@ In a project directory of your choosing, create the following subdirectory struc
 ```gradle
 buildscript {
     repositories {
-        maven { url "http://repo.springsource.org/libs-snapshot" }
+        maven { url "http://repo.spring.io/libs-snapshot" }
         mavenLocal()
     }
     dependencies {
@@ -80,7 +80,7 @@ jar {
 
 repositories {
     mavenCentral()
-    maven { url "http://repo.springsource.org/libs-snapshot" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
@@ -225,7 +225,7 @@ This signals Gradle to build a WAR. Here is the new version of the build.gradle:
 ```gradle
 buildscript {
     repositories {
-        maven { url "http://repo.springsource.org/libs-snapshot" }
+        maven { url "http://repo.spring.io/libs-snapshot" }
         mavenLocal()
     }
     dependencies {
@@ -246,7 +246,7 @@ war {
 
 repositories {
     mavenCentral()
-    maven { url "http://repo.springsource.org/libs-snapshot" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {

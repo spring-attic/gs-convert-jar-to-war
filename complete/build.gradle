@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url "http://repo.springsource.org/libs-snapshot" }
+        maven { url "http://repo.spring.io/libs-snapshot" }
         mavenLocal()
     }
     dependencies {
@@ -21,7 +21,7 @@ war {
 
 repositories {
     mavenCentral()
-    maven { url "http://repo.springsource.org/libs-snapshot" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
