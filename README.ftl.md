@@ -1,6 +1,6 @@
 <#assign project_id="gs-convert-jar-to-war">
 
-This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/SpringSource/spring-boot) into a [WAR][u-war] file that you can run in any standard servlet container.
+This guide walks you through the process of converting a runnable JAR application that was built with [Spring Boot](https://github.com/spring-projects/spring-boot) into a [WAR][u-war] file that you can run in any standard servlet container.
 
 What you'll build
 -----------------
@@ -142,7 +142,7 @@ This command creates **build/libs/${project_id}-0.1.0.jar**, a deployable artifa
     
 You can download [Tomcat 7.0.42](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.42/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
-If you are using [Spring Tool Suite](http://www.springsource.org/sts) to develop your application, you can use its built-in support for **tc Server v2.9**. 
+If you are using [Spring Tool Suite](http://spring.io/tools/sts/all) to develop your application, you can use its built-in support for **tc Server v2.9**. 
 - Drag the entire application's root folder down to the server instance. 
 - Click the `Start` button to start the app.
 - You should see tc Server logging appear in one of the console windows.
