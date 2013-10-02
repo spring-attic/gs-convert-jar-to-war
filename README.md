@@ -260,7 +260,7 @@ task wrapper(type: Wrapper) {
 }
 ```
     
-Now when you run `./gradlew clean build` to create a WAR file, as you'll see below.
+Now when you run `./gradlew clean build` a WAR file is created, as you'll see below.
 
 Initialize the servlet
 ------------------------
@@ -303,7 +303,7 @@ At this stage, you are ready to build a WAR file.
 $ ./gradlew clean build
 ```
     
-This command creates **build/libs/gs-convert-jar-to-war-0.1.0.jar**, a deployable artifact.
+This command creates **build/libs/gs-convert-jar-to-war-0.1.0.war**, a deployable artifact.
     
 You can download [Tomcat 7.0.42](http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.42/bin/) (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
