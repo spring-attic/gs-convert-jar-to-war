@@ -6,8 +6,8 @@ import org.springframework.boot.web.SpringBootServletInitializer;
 public class HelloWebXml extends SpringBootServletInitializer {
 
     @Override
-    protected void configure(SpringApplicationBuilder application) {
-        application.sources(Application.class);
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
     }
 
 }
