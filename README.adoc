@@ -19,7 +19,6 @@ You'll take a simple Spring MVC web app and build a WAR file using Spring Boot.
 include::https://raw.github.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
 
 
-:jump_ahead: Create a basic web application
 include::https://raw.github.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
 
