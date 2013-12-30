@@ -128,8 +128,10 @@ This signals Gradle to build a WAR. Here is the new version of the build.gradle:
 ----
 include::complete/build.gradle[]
 ----
-    
+
 Now when you run `./gradlew clean build` a WAR file is created, as you'll see below.
+
+NOTE: If you are using Spring Tool Suite or Eclipse, you need to run `./gradlew eclipseWtp` to reconfigure your project so you can drag the app directly to tc Server.
 
 == Initialize the servlet
 Previously, the application contained a `public static void main()` method which the **spring-boot-gradle-plugin** was configured to run when using the `java -jar` command.
