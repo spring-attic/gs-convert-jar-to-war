@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [spring-boot]
 projects: [spring-boot]
 ---
 :spring_version: 4.0.0.RC1
