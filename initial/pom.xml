@@ -6,16 +6,13 @@
     <groupId>org.springframework</groupId>
     <artifactId>gs-convert-jar-to-war</artifactId>
     <version>0.1.0</version>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.0.0.RC3</version>
     </parent>
-
-    <properties>
-        <start-class>hello.Application</start-class>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -27,6 +24,10 @@
             <artifactId>thymeleaf-spring4</artifactId>
         </dependency>
     </dependencies>
+
+    <properties>
+        <start-class>hello.Application</start-class>
+    </properties>
 
     <build>
         <plugins>
