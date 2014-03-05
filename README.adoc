@@ -4,6 +4,7 @@ projects: [spring-boot]
 ---
 :spring_version: current
 :spring_boot_version: 1.0.0.RC4
+:tomcat_version: 7.0.52
 :Component: http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/stereotype/Component.html
 :Controller: http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/stereotype/Controller.html
 :DispatcherServlet: http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html
@@ -168,7 +169,7 @@ At this stage, you are ready to build a WAR file.
     
 This command creates **build/libs/{project_id}-0.1.0.war**, a deployable artifact.
     
-You can download http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.42/bin/[Tomcat 7.0.42] (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
+You can download http://archive.apache.org/dist/tomcat/tomcat-7/v{tomcat_version}/bin/[Tomcat {tomcat_version}] (the same version Spring Boot currently uses), Jetty, or any other container, as long as it has servlet 3.0 support. Unpack it and drop the WAR file in the proper directory. Then start the server.
 
 If you are using http://spring.io/tools/sts/all[Spring Tool Suite] to develop your application, you can use its built-in support for **tc Server v2.9**. 
 
