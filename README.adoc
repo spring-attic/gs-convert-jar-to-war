@@ -126,6 +126,22 @@ war {
 }
 ----
 
+and, if you want to deploy the WAR file to an external container, you
+also need to mark the embedded container dependencies as "provided":
+
+[source,groovy]
+---
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    ...
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    ...
+}
+---
+
 This signals Gradle to build a WAR. Here is the new version of the build.gradle:
 
 `build.gradle`
