@@ -24,8 +24,13 @@ repositories {
     maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
+configurations {
+    providedRuntime
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testCompile("junit:junit")
 }
 
