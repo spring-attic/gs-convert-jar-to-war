@@ -82,7 +82,7 @@ This template has some very basic HTML elements and no actual Thymeleaf-specific
 
 == Make the application executable
 
-In this guide, you'll first make the application an executable JAR file. You package everything in a single, executable JAR, driven by a `main()` method. Along the way, you use Spring's support for embedding the link:/understanding/Tomcat[Tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance. Later on, you'll see how to build a [WAR][u-war] file and run it on a standard container.
+In this guide, you'll first make the application an executable JAR file. You package everything in a single, executable JAR, driven by a `main()` method. Along the way, you use Spring's support for embedding the link:/understanding/Tomcat[Tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance. Later on, you'll see how to build a link:/understanding/WAR[WAR] file and run it on a standard container.
 
 
 `src/main/java/hello/Application.java`
