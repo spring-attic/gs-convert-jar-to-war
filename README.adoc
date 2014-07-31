@@ -134,7 +134,6 @@ also need to mark the embedded container dependencies as "provided":
 configurations {
     providedRuntime
 }
-
 dependencies {
     ...
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
