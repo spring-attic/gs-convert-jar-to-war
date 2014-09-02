@@ -28,21 +28,11 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
 
-[[scratch]]
-== Set up the project
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-gradle.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_system_intro.adoc[]
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-maven.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/create_directory_structure_hello.adoc[]
-
-
-`build.gradle`
-[source,gradle]
-----
-include::initial/build.gradle[]
-----
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-gradle-plugin.adoc[]
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
 
 
 [[initial]]
@@ -154,7 +144,6 @@ Now when you run `./gradlew clean build` a WAR file is created, as you'll see be
 NOTE: If you are using Spring Tool Suite or Eclipse, you need to run `./gradlew eclipseWtp` to reconfigure your project so you can drag the app directly to tc Server.
 
 == Initialize the servlet
-Previously, the application contained a `public static void main()` method which the **spring-boot-gradle-plugin** was configured to run when using the `java -jar` command.
 
 By converting this into a WAR file with no XML files, you need a different signal to the servlet container on how to launch the application.
 
