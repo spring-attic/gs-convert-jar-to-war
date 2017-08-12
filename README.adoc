@@ -23,5 +23,11 @@ For detailed steps on how to configure your application to create a WAR file for
 * {spring_boot_docs}/#build-tool-plugins-gradle-packaging[Packaging executable jar and war files with Gradle]
 
 NOTE: Spring Boot operates on servlet 3.0 spec containers.
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
 
+== See Also
+
+The following guide may also be helpful:
+
+* https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
