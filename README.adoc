@@ -20,7 +20,8 @@ A popular subject is that many people still wish to generate WAR files to be dep
 For detailed steps on how to configure your application to create a WAR file for your container, please see:
 
 * {spring_boot_docs}/#build-tool-plugins-maven-packaging[Packaging executable jar and war files with Maven]
-* {spring_boot_docs}/#build-tool-plugins-gradle-packaging[Packaging executable jar and war files with Gradle]
+* {spring_boot_docs}/#build-tool-plugins-gradle-plugin[Spring Boot Gradle Plugin] or
+* https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-executable-wars[Gradle Plugin Reference: Packaging executable wars]
 
 NOTE: Spring Boot operates on servlet 3.0 spec containers.
 
