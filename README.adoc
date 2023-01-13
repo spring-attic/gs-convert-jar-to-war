@@ -19,7 +19,7 @@ For detailed steps on how to configure your application to create a WAR file for
 * {spring_boot_docs}/#build-tool-plugins-gradle-plugin[Spring Boot Gradle Plugin] or
 * https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-executable-wars[Gradle Plugin Reference: Packaging executable wars]
 
-NOTE: Spring Boot operates on servlet 3.0 spec containers.
+NOTE: Spring Boot operates on servlet 5.0 spec containers.
 
 == See Also
 
