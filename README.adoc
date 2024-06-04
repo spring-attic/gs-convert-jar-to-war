@@ -4,6 +4,8 @@
 :project_id: gs-convert-jar-to-war
 :spring_boot_docs: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle
 
+# This repository is no longer maintained.
+
 Spring Boot comes with two powerful plugins:
 
 * `spring-boot-gradle-plugin`
